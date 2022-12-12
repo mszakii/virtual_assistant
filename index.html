@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <!-- meta -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- css -->
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/master.css" />
+    <!-- title and open graph -->
+    <title>Virtual assistant</title>
+    <meta
+      name="description"
+      content="I am a virtual assistant that can help you at any time."
+    />
+  </head>
+  <body>
+    <div class="one">
+      <div class="profile">
+        <img src="./assets/avata.png" alt="avatar" />
+        <div class="text">
+          <span id="greet">Hello</span>, what task can I do for you?
+        </div>
+      </div>
+    </div>
+    <div class="two">
+      <div class="box" id="box"></div>
+      <div class="write">
+        <input
+          type="text"
+          name="command"
+          id="command"
+          placeholder="What is the time?"
+        />
+        <div class="btns">
+          <button id="voice">
+            <img src="./assets/mic.svg" alt="mic" width="11.25" height="15px" />
+          </button>
+          <button id="send">
+            <img src="./assets/send.svg" alt="send" width="15" height="15px" />
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- javascript -->
+    <script src="js/master.js"></script>
+  </body>
+</html>

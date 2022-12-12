@@ -1,0 +1,1 @@
+extange rate api = https://apilayer.com/marketplace/exchangerates_data-api?_gl=1*1ianc4o*_ga*MTU2ODEyMDQwMS4xNjcwODI5MTI0*_ga_HGV43FGGVM*MTY3MDgyOTEyMy4xLjEuMTY3MDgyOTEzNC40OS4wLjA.#
