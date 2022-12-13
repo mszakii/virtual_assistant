@@ -18,19 +18,26 @@ let date = new Date();
 function createMsg(text, response, parent, url) {
   // Get time
   let time = "";
+  let h;
+  let m;
+  let t;
+
   if (date.getHours() > 12) {
-    if (date.getHours() < 10) {
-      time = `${date.getHours() - 12}:${date.getMinutes()}PM`;
-    } else {
-      time = `0${date.getHours() - 12}:${date.getMinutes()}PM`;
-    }
+    h = `0${date.getHours() - 12}`;
+    t = "PM";
   } else {
-    if (date.getHours() < 10) {
-      time = `${date.getHours()}:${date.getMinutes()}AM`;
-    } else {
-      time = `0${date.getHours()}:${date.getMinutes()}AM`;
-    }
+    h = `${date.getHours() - 12}`;
+    t = "AM";
   }
+
+  if (date.getMinutes() < 10) {
+    m = `0${date.getMinutes()}`;
+  } else {
+    m = `${date.getMinutes()}`;
+  }
+
+  time = `${h}:${m}${t}`;
+
   // create elements
   let cardEl = document.createElement("div");
   cardEl.className = "card";
@@ -101,10 +108,20 @@ function sendMsg(x) {
     } else if (
       val.includes("hello") ||
       val.includes("good afternoon") ||
-      val.includes("good morning")
+      val.includes("good morning") ||
+      val.includes("hi")
     ) {
-      createMsg(val, `Hello, how can I help you?`, box);
-      speak(`Hello, how can I help you?`);
+      if (localStorage.username) {
+        createMsg(
+          val,
+          `Hello ${localStorage.username}, how can I help you?`,
+          box
+        );
+        speak(`Hello ${localStorage.username}, how can I help you?`);
+      } else {
+        createMsg(val, `Hello, how can I help you?`, box);
+        speak(`Hello, how can I help you?`);
+      }
     } else if (val.includes("price")) {
       // money price
       var myHeaders = new Headers();
@@ -182,7 +199,7 @@ function sendMsg(x) {
       window.open("https://mszakii.github.io/pomodoro");
       createMsg(val, `Opening pomodoro timer...`, box);
       speak(`Opening pomodoro timer`);
-    } else if (val.includes("todo")) {
+    } else if (val.includes("todo") || val.includes("to do")) {
       window.open("https://mszakii.github.io/todo-app");
       createMsg(val, `Opening todo...`, box);
       speak(`Opening todo`);
@@ -198,15 +215,23 @@ function sendMsg(x) {
       window.open("https://translate.google.com");
       createMsg(val, `Opening tranlate...`, box);
       speak(`Opening translate`);
-    } else if (val == "about you") {
+    } else if (val == "about you" || val == "docs") {
       createMsg(
         val,
         `I am a virtul assistant. I made by Mohamed Elsayed Zaky. I made to help you.`,
-        box
+        box,
+        "https://github.com/mszakii/virtual_assistant#virtul-assistant-documentation"
       );
       speak(
         `I am a virtul assistant. I made by Mohamed Elsayed Zaky. I made to help you.`
       );
+    } else if (val.startsWith("my name is")) {
+      localStorage.username = val.slice(11);
+      createMsg(val, `Nice to meet you ${localStorage.username}`, box);
+      speak(`Nice to meet you ${localStorage.username}`);
+    } else if (val.startsWith("what is my name")) {
+      createMsg(val, `Your name is ${localStorage.username}`, box);
+      speak(`Your name is ${localStorage.username}`);
     } else {
       createMsg(val, `Sorry, I can't recognize you`, box);
       speak(`Sorry, I can't recognize you`);
@@ -228,6 +253,8 @@ let mic = document.getElementById("voice");
 let SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 let recognition = new SpeechRecognition();
+
+recognition.lang = "en-US";
 
 recognition.onresult = function (event) {
   let current = event.resultIndex;
