@@ -1,5 +1,7 @@
 # Virtul assistant documentation
 
+[Run it from here]("https://mszakii.github.io/virtual_assistant")
+
 #### Date and Time
 - To get the current date or time just ask about the date like `What is the date` or `The time now`
 
@@ -29,5 +31,7 @@
 #### translation
 - If you want to translate just say `Open translate`
 
+#### informations
+- Tell the assistant your name by saying `My name is ...`
 
-This program are made by **[Mohamed Elsayed Zaky]('https://mszakii.github.io/me')** © 2023
+This program are made by [Mohamed Elsayed Zaky]('https://mszakii.github.io/me') © 2023
