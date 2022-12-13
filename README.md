@@ -31,6 +31,9 @@
 #### translation
 - If you want to translate just say `Open translate`
 
+#### weather forecast
+- to know the weather just say `weather in cairo` or `weather in ...`
+
 #### informations
 - Tell the assistant your name by saying `My name is ...`
 
