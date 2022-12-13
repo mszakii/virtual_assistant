@@ -232,6 +232,32 @@ function sendMsg(x) {
     } else if (val.startsWith("what is my name")) {
       createMsg(val, `Your name is ${localStorage.username}`, box);
       speak(`Your name is ${localStorage.username}`);
+    } else if (val.startsWith("weather in")) {
+      fetch(
+        `https://api.weatherapi.com/v1/forecast.json?key=7fac587ac4684e7db90113911221312&q=${val.slice(
+          11
+        )}&days=1&aqi=no&alerts=no`
+      )
+        .then((data) => data.json())
+        .then((data) => data.forecast.forecastday[0].day)
+        .then((data) => {
+          createMsg(
+            val,
+            `The weather in ${val.slice(11)} is ${
+              data.condition.text
+            } the tempreture is ${data.avgtemp_c} the chance of rain is ${
+              data.daily_chance_of_rain
+            } the humidity is ${data.avghumidity}`,
+            box
+          );
+          speak(
+            `The weather in ${val.slice(11)} is ${
+              data.condition.text
+            } the tempreture is ${data.avgtemp_c} the chance of rain is ${
+              data.daily_chance_of_rain
+            } the humidity is ${data.avghumidity}`
+          );
+        });
     } else {
       createMsg(val, `Sorry, I can't recognize you`, box);
       speak(`Sorry, I can't recognize you`);
