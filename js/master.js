@@ -25,8 +25,14 @@ function createMsg(text, response, parent, url) {
   if (date.getHours() > 12) {
     h = `0${date.getHours() - 12}`;
     t = "PM";
+  } else if (date.getHours() == 12) {
+    h = `${date.getHours()}`;
+    t = "PM";
+  } else if (date.getHours() == 10 || date.getHours() == 11) {
+    h = `${date.getHours()}`;
+    t = "AM";
   } else {
-    h = `${date.getHours() - 12}`;
+    h = `0${date.getHours()}`;
     t = "AM";
   }
 
